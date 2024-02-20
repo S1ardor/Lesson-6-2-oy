@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lesson-6 - 7</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="stylesheet" href="./output.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    </head>
+    <body class="bg-black">
+        <!-- 6-dars hamma movies 50% hususiyatlarini ishlatish boshqa darslar ham jamlangan. hususiyatlarini 100% ishlatamiz boshqa darslarda masalan 7 ....  -->
+        <header>
+            <nav class="bg-black text-white fixed top-0 right-0 left-0 z-50">
+                <div class="container m-auto">
+                    <div
+                        class="header__amc-control flex items-center justify-between border-b border-gray-400">
+                        <div class="movies__items flex">
+                            <img class="max-w-17 size-20 mx-5"
+                                src="./images/amc-img.svg"
+                                alt="amc-img">
+                            <ul
+                                class="flex items-center gap-x-7 text-zinc-200">
+                                <li
+                                    class="hover:scale-105 cursor-pointer text-white transition-all">DOCS</li>
+                                <li
+                                    class="hover:scale-105 cursor-pointer text-white transition-all">COMPANY</li>
+                                <li
+                                    class="hover:scale-105 cursor-pointer text-white transition-all">INFORMATION</li>
+                                <!-- <form class="js-select-form"> -->
+                                <select
+                                    class="js-selecmovies-select bg-black hover:cursor-pointer px-1 py-2">
+                                    <option class="bg-zinc-800"
+                                        value="more">MORE</option>
+                                    <option
+                                        value="animation">Animation</option>
+                                    <option class="hover:cursor-pointer"
+                                        value="sport">Sport</option>
+                                    <option value="drama">Drama</option>
+                                </select>
+                                <!-- </form> -->
+                            </ul>
+                        </div>
+                        <form class="js-movies-form relative flex items-center">
+                            <input
+                                class="js-movies-input pl-3 p-2 rounded-sm w-64 bg-zinc-800"
+                                type="text"
+                                placeholder="Search...">
+                            <button class="absolute right-0 pr-2" type="submit">
+                                <i
+                                    class="fa-solid fa-magnifying-glass text-white"></i>
+                            </button>
+                        </form>
+                        <div class="login__buttons items-center">
+                            <i
+                                class="fa-solid fa-user-plus ml-2 mb-1 border-2 w-9 rounded-full p-2"></i>
+                            <button
+                                class="hover:border-b-2 ml-3 mr-2 py-0 transition-all">SIGN
+                                UP</button>
+                            <span class="text-xs text-blue-500">OR</span>
+                            <button
+                                class="border-gray-300 hover:border-b-2 mr-8 ml-2 transition-all">LOG
+                                IN</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <!-- 1-section ko'p narsalar filter -->
+            <section>
+                <div class="container m-auto">
+                    <div
+                        class="movies__sort-all mx-5 mt-20 py-3">
+                        <div>
+                            <form
+                                class="js-movies-functional-form flex gap-x-5">
+                                <select
+                                    class="js-movies-catigory rounded py-1 px-2 bg-zinc-700 text-white"
+                                    name="category">
+                                    <option class="js-all-category bg-zinc-800"
+                                        value="All"
+                                        selected>All</option>
+                                </select>
+                                <button
+                                    class="border border-zinc-800 px-3 py-1 rounded bg-red-800 hover:bg-red-700 text-white"
+                                    type="submit">Sort</button>
+                                <select
+                                    class="rounded py-1 px-2 bg-zinc-700 text-white">
+                                    <option value="All" selected>A - Z</option>
+                                    <option value="salom">A - Z</option>
+                                    <option value="salom">Z - A</option>
+                                </select>
+
+                                <input
+                                    class="js-max-year placeholder:text-gray-400 rounded py-1 px-2 bg-zinc-700 text-white"
+                                    type="text"
+                                    placeholder="Max year movies"
+                                    aria-label="Max year">
+                                <input
+                                    class="js-min-year placeholder:text-gray-400 rounded py-1 px-2 bg-zinc-700 text-white"
+                                    type="text" placeholder="Min year movies"
+                                    aria-label="Min year">
+                                <!-- <input
+                                    class="js-only-year placeholder:text-gray-400 rounded py-1 px-2 bg-zinc-700 text-white"
+                                    type="text"
+                                    placeholder="Enter your only"
+                                    aria-label="Enter your only"> -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2-section data render -->
+            <section>
+                <div class="container m-auto">
+                    <p
+                        class="js-not0-found text-red-600 hidden text-center bg-red-200 py-2 w-11/12 m-auto rounded">The
+                        movies
+                        you
+                        entered
+                        were not found ? enter another</p>
+                    <div class="section__movies-render text-white">
+                        <ul
+                            class="js-movies-result flex items-center justify-center  flex-wrap py-2 gap-10 border border-black bg-black m-auto mx-5">
+                            <span
+                                class="loader mt-44"></span>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- modal  -->
+            <div class="js-modal hidden relative z-50"
+                aria-labelledby="modal-title"
+                role="dialog"
+                aria-modal="true">
+                <div
+                    class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+                <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                    <div
+                        class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                        <div
+                            class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-5xl">
+                            <div class="bg-white px-5 pb-4 pt-5 sm:p-6">
+                                <div class="sm:flex sm:items-start">
+                                    <div
+                                        class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                                        <h3
+                                            class="js-modal-title mb-5 text-2xl font-semibold leading-6 text-gray-900"
+                                            id="modal-title"></h3>
+
+                                        <div class="mt-2 flex gap-x-5">
+                                            <div>
+                                                <iframe class="js-moda-video"
+                                                    width="560" height="315"
+                                                    src="https://www.youtube-nocookie.com/embed/erLk59H86ww"
+                                                    title="YouTube video player"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen></iframe>
+                                            </div>
+                                            <div>
+                                                <!-- js modal link  -->
+                                                <div
+                                                    class="flex justify-between">
+                                                    <div>
+                                                        <i
+                                                            class="fa-solid fa-star text-yellow-500"></i>
+                                                        <span
+                                                            class="js-modal-runtime"></span>
+                                                    </div>
+                                                    <div>
+                                                        <i
+                                                            class="fa-solid fa-calendar-days"></i>
+                                                        <span
+                                                            class="js-modal-year"></span>
+                                                    </div>
+                                                    <div>
+                                                        <i
+                                                            class="fa-solid fa-clock"></i>
+                                                        <span
+                                                            class="js-modal-hour"></span>
+                                                    </div>
+                                                </div>
+                                                <h5
+                                                    class="js-modal-catigory mt-7 mb-2"></h5>
+                                                <p
+                                                    class="js-modal-summary text-sm text-gray-500"></p>
+
+                                                <button
+                                                    class="js-modal-link text-blue-600 border-b-2 border-blue-600 absolute bottom-6">
+                                                    <a
+                                                        class="js-movies-link"
+                                                        href="#"
+                                                        target="_blank">Show
+                                                        on IMDb</a>
+                                                    <i
+                                                        class="fa-solid fa-up-right-from-square ml-1 text-blue-600"></i>
+                                                </button>
+                                                <!-- modal hidden btn -->
+                                                <button
+                                                    class="js-modal-control absolute top-0 right-0 bg-red-600 px-5 py-2 rounded-bl-lg text-white"><i
+                                                        class="js-modal-control fa-solid fa-x"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- tepmlate  -->
+            <template class="js-template">
+                <li
+                    class="w-64 rounded bg-zinc-900 p-2 hover:bg-zinc-800 cursor-pointer ">
+                    <img
+                        class="js-img m-auto w-full min-h-44 rounded"
+                        src="./images/amc-img.svg"
+                        alt="movies-img">
+                    <h3 class="js-movies-title text-2xl mb-3 mt-3"></h3>
+                    <div>
+                        <i class="fa-regular fa-star text-amber-300"></i>
+                        <span
+                            class="js-movies-rating text-sm"></span>
+                        <i class="fa-regular fa-calendar-days ml-2"></i>
+                        <time
+                            class="js-movies-year mr-2 text-sm"
+                            datetime="2020-12-20"></time>
+                        <i class="fa-regular fa-clock"></i>
+                        <time class="js-movies-time text-sm"
+                            datetime="2006-12-20"></time>
+                    </div>
+                    <h5
+                        class="js-movies-categories text-lg my-2"></h5>
+                    <i
+                        class="fa-solid fa-circle-info absolute my-[13px] ml-[58px]"></i>
+                    <button
+                        class="js-modal-btn block border w-full py-2 px-6 rounded-md border-emerald-800 bg-emerald-800 hover:bg-emerald-900"
+                        aria-modal="true" role="dialog">More
+                        info</button>
+                    <i class="fa-regular fa-bookmark absolute pt-6 pl-16"></i>
+                    <button
+                        class="block mt-3 border w-full py-2 px-6 rounded-md border-yellow-600 bg-yellow-600">Add</button>
+
+                </li>
+            </template>
+
+        </main>
+
+        <script src="./js/movies.js"></script>
+        <script src="./js/main.js"></script>
+    </body>
+</html>
